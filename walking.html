@@ -4,50 +4,65 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Walking GIF</title>
 
     <style>
-      /* .container {
-        height: 400px;
-        border: 3px solid rgb(8, 8, 8);
-        /* display: flex;
-        align-items: end; */
-        /* overflow: hidden; */
-        /* padding: 20px auto; */
-        /* margin: 100px; 
-      } */
+      header {
+        text-align: center;
+        font-family: "Courier New", Courier, monospace;
+      }
 
-      #walk {
+      p {
+        margin-top: -10px;
+      }
+
+      .container {
+        position: relative;
+        height: 350px;
+        width: 550px;
+        border: 2px solid black;
+        margin: auto;
+        overflow: hidden;
+        background-color: aliceblue;
+      }
+
+      .walk {
+        margin-top: 215px;
+        height: 140px;
+        width: 180px;
         background: url("walking1.gif");
-        height: 180px;
-        width: 200px;
-        margin-top: 230px;
-        position: absolute;
-        margin-left: -100px;
         background-size: 100% 100%;
+        position: absolute;
+        margin-left: -120px;
       }
     </style>
   </head>
   <body>
-    <!-- <div class="container"> -->
-      <div id="walk" class="walking"></div>
-    <!-- </div> -->
+    <header>
+      <h2>WALKING GIF</h2>
+      <p>by anjar</p>
+    </header>
+    <div class="container">
+      <div id="walking" class="walk"></div>
+    </div>
   </body>
-
   <script>
-    function setWalking() {
-      var hiro = document.getElementById("walk");
+    function setWalk() {
+      var hiro = document.getElementById("walking");
+      var s = 5;
       setInterval(function () {
-        hiro.style.marginLeft = parseInt(hiro.style.marginLeft.replace("px", "")) + 1 + "px";
+        var style = getComputedStyle(hiro);
+        const ileft = parseInt(style.left.replace("px", ""));
 
-        // if (parseInt(hiro.style.marginLeft.replace("px", "")) < - 100) {
-        //     hiro.style.marginLeft = "-150px";
-        // } else {
-        //     setWalking();
-        // }
-      }, 500);
+        hiro.style.left = ileft + 5 + "px";
+
+        if (parseInt(hiro.style.left) > 600) {
+          hiro.style.left = "20px";
+        }
+      }, 50);
     }
-    setWalking();
+    setWalk();
   </script>
 </html>
+
 
