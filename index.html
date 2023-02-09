@@ -27,13 +27,19 @@
       }
 
       .walk {
-        margin-top: 215px;
-        height: 140px;
-        width: 180px;
+        margin-top: 160px;
+        height: 200px;
+        width: 250px;
         background: url("walking1.gif");
         background-size: 100% 100%;
         position: absolute;
-        margin-left: -120px;
+        margin-left: -160px;
+      }
+
+      @media screen and (max-width: 400px) {
+        .container {
+          width: 350px;
+        }
       }
     </style>
   </head>
@@ -49,38 +55,32 @@
   <script>
     function setWalk() {
       var hiro = document.getElementById("walking");
-      var s = 5;
-      setInterval(function () {
-        var style = getComputedStyle(hiro);
-        const ileft = parseInt(style.left.replace("px", ""));
+      var s = 7;
+      const mediaQuery = window.matchMedia("(max-width: 400px)");
+      if (mediaQuery.matches) {
+        setInterval(function () {
+          var style = getComputedStyle(hiro);
+          const ileft = parseInt(style.left.replace("px", ""));
 
-        hiro.style.left = ileft + s + "px";
+          hiro.style.left = ileft + s + "px";
 
-        if (parseInt(hiro.style.left) > 600) {
-          hiro.style.left = "20px";
-        }
-      }, 50);
+          if (parseInt(hiro.style.left) > 400) {
+            hiro.style.left = "-15px";
+          }
+        }, 50);
+      } else {
+        setInterval(function () {
+          var style = getComputedStyle(hiro);
+          const ileft = parseInt(style.left.replace("px", ""));
+
+          hiro.style.left = ileft + s + "px";
+
+          if (parseInt(hiro.style.left) > 600) {
+            hiro.style.left = "-15px";
+          }
+        }, 50);
+      }
     }
     setWalk();
-    function setWalk2(x) {
-      var hiro = document.getElementById("walking");
-      var s = 5;
-      setInterval(function () {
-        var style = getComputedStyle(hiro);
-        const ileft = parseInt(style.left.replace("px", ""));
-
-        hiro.style.left = ileft + s + "px";
-
-        if (parseInt(hiro.style.left) > 380) {
-          hiro.style.left = "20px";
-        }
-      }, 80);
-    }
-
-    var x = window.matchMedia("(max-width: 400px)");
-    setWalk2();
-    x.addListener(setWalk2);
   </script>
 </html>
-
-
