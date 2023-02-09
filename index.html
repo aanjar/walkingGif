@@ -62,6 +62,24 @@
       }, 50);
     }
     setWalk();
+    function setWalk2(x) {
+      var hiro = document.getElementById("walking");
+      var s = 5;
+      setInterval(function () {
+        var style = getComputedStyle(hiro);
+        const ileft = parseInt(style.left.replace("px", ""));
+
+        hiro.style.left = ileft + s + "px";
+
+        if (parseInt(hiro.style.left) > 380) {
+          hiro.style.left = "20px";
+        }
+      }, 80);
+    }
+
+    var x = window.matchMedia("(max-width: 400px)");
+    setWalk2();
+    x.addListener(setWalk2);
   </script>
 </html>
 
